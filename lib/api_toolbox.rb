@@ -8,8 +8,18 @@ require "api_toolbox/version"
 module ApiToolbox
   class Config
     class << self
-      def url
+      def base_url
         ENV["API_URL"] || raise("ENV['API_URL'] not defined")
+      end
+
+      alias url base_url
+
+      def events_url
+        ENV["API_EVENTS_URL"] || "#{base_url}/events"
+      end
+
+      def users_url
+        ENV["API_USERS_URL"] || "#{base_url}/users"
       end
     end
   end
