@@ -21,14 +21,14 @@ module ApiToolbox
     def build_event_params
       {
         event: {
-          event_category: context.event_category,
-          user_id:        context.user_id
+          category: context.event_category,
+          user_id:  user_id
         }
       }
     end
 
     def user_id
-      Hash(context.user)["id"]
+      context.user_id ||= Hash(context.user)["id"]
     end
   end
 end
