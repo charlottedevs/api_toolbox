@@ -5,7 +5,7 @@ module ApiToolbox
     def call
       res = HTTParty.post(events_url, body: event_params)
       return unless res.success?
-      context.fail!(errors: res.errors)
+      context.fail!(errors: res.body)
     end
 
     private
