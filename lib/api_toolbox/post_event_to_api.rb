@@ -20,8 +20,10 @@ module ApiToolbox
 
     def build_event_params
       {
-        event_category: context.event_category,
-        user_id:        context.user_id
+        event: {
+          event_category: context.event_category,
+          user_id:        context.user_id
+        }
       }
     end
 
