@@ -3,7 +3,7 @@ module ApiToolbox
     include ::Interactor
 
     def call
-      res = HTTParty.post(events_url, body: event_params)
+      res = HTTParty.post(events_url, body: event_params, headers: ApiToolbox::Config.auth_headers)
       return unless res.success?
       context.fail!(errors: res.body)
     end

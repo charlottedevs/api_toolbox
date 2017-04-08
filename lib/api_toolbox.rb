@@ -21,6 +21,12 @@ module ApiToolbox
       def users_url
         ENV["API_USERS_URL"] || "#{base_url}/users"
       end
+
+      def auth_headers
+        {
+          "Authorization" => "Bearer #{ENV.fetch('API_TOKEN')}"
+        }
+      end
     end
   end
 end
