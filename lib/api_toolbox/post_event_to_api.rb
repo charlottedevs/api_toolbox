@@ -4,6 +4,7 @@ module ApiToolbox
 
     def call
       res = HTTParty.post(events_url, body: event_params, headers: ApiToolbox::Config.auth_headers)
+      context.response = res
       return unless res.success?
       context.fail!(errors: res.body)
     end
@@ -28,7 +29,7 @@ module ApiToolbox
     end
 
     def user_id
-      context.user_id ||= Hash(context.user)["id"]
+      context.user_id ||= Hash(context.user).fetch("id") { raise "context.user_id or context.user not defined" }
     end
   end
 end

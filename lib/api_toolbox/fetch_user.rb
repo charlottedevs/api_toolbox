@@ -14,7 +14,7 @@ module ApiToolbox
       context.fail!(errors: response.body) unless response.success?
       parsed_response = JSON.parse(response.body)
       context.fail!(errors: { response: "no content" }) if parsed_response.nil? || parsed_response.empty?
-      context.user = parsed_response
+      context.user = OpenStruct.new(parsed_response["user"])
     end
 
     def user_params
